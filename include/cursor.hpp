@@ -141,6 +141,22 @@ namespace console {
         moveCursorToPosition(coord.X + n, coord.Y);
         #endif
     }
+
+    /**
+    * @brief Move the cursor left by n lines
+    * 
+    * @param n Number of lines to move by.
+    */
+    void moveCursorLeft(int n) {
+        if (isANSIEnabled()) {
+            std::cout << "\033[" << std::to_string(n) << "C";
+            return;
+        }
+        #ifdef __WIN32
+        ConsoleCoord coord = getCursorPosition();
+        moveCursorToPosition(coord.X - n, coord.Y);
+        #endif
+    }
 }
 
 #endif
