@@ -149,7 +149,7 @@ namespace console {
     */
     void moveCursorLeft(int n) {
         if (isANSIEnabled()) {
-            std::cout << "\033[" << std::to_string(n) << "C";
+            std::cout << "\033[" << std::to_string(n) << "D";
             return;
         }
         #ifdef __WIN32
