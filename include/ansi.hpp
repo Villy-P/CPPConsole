@@ -31,6 +31,19 @@ namespace console {
         return true;
         #endif
     }
+
+    /**
+     * @brief Enables ANSI for Windows environments
+    */
+    void enableANSI() {
+        #ifdef __WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        DWORD consoleMode;
+        GetConsoleMode(hConsole, &consoleMode);
+        consoleMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+        SetConsoleMode(hConsole, consoleMode);
+        #endif
+    }
 }
 
 #endif
