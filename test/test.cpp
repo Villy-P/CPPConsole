@@ -5,6 +5,7 @@
 #include "console.hpp"
 #include "printall.hpp"
 #include "cursor.hpp"
+#include "erase.hpp"
 
 int main() {
     std::vector<int> vec = {0, 1, 2, 4, 8, 16};
@@ -25,6 +26,7 @@ int main() {
     console::println();
     console::printlnAll("Wow!", vec, m, arr);
 
-    console::println(console::getCursorPosition().Y);
+    console::moveCursorUp(5);
+    console::eraseFromCursorToEOS();
     return 0;
 }
