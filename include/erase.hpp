@@ -46,6 +46,34 @@ namespace console {
         SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
         #endif
     }
+
+    /**
+     * @brief Erases the screen from the cursor to the beginning of screen
+     */
+    void eraseFromCursorToBOS() {
+        if (isANSIEnabled()) {
+            std::cout << "\033[1J";
+            return;
+        }
+        #ifdef __WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (hConsole == INVALID_HANDLE_VALUE) {
+            std::cerr << "Error: Unable to get console handle." << std::endl;
+            return;
+        }
+        CONSOLE_SCREEN_BUFFER_INFO csbi;
+        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
+            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
+            return;
+        }
+        DWORD cellsToClear = csbi.dwCursorPosition.Y * csbi.dwSize.X + csbi.dwCursorPosition.X + 1;
+        DWORD charsWritten;
+        COORD startCoord = {0, 0};
+        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+        #endif
+    }
 }
 
 #endif

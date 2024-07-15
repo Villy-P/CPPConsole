@@ -27,6 +27,6 @@ int main() {
     console::printlnAll("Wow!", vec, m, arr);
 
     console::moveCursorUp(5);
-    console::eraseFromCursorToEOS();
+    console::eraseFromCursorToBOS();
     return 0;
 }
