@@ -19,6 +19,9 @@
  * @brief Namespace Containing all console commands
  */
 namespace console {
+    /**
+     * @brief Moves cursor to home position (0, 0)
+     */
     void moveCursorHome() {
         if (isANSIEnabled()) {
             std::cout << "\033[H";
