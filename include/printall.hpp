@@ -23,6 +23,22 @@ namespace console {
         print(" ");
         printAll(args...);
     }
+
+    template <typename T>
+    void printlnAll(T t) {
+        println(t);
+    }
+
+    /**
+     * @brief Prints all items
+     * 
+     * @param args Items to print 
+     */
+    template<typename T, typename... Args>
+    void printlnAll(T t, Args... args) {
+        println(t);
+        printlnAll(args...);
+    }
 }
 
 #endif

@@ -22,6 +22,6 @@ int main() {
     console::println(arr);
 
     console::println();
-    console::printAll("Wow!", vec, m, arr);
+    console::printlnAll("Wow!", vec, m, arr);
     return 0;
 }
