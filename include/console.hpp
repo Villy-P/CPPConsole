@@ -72,6 +72,16 @@ namespace console {
     void print(const char (&arr)[N]) {
         std::cout << arr;
     }
+
+    /**
+     * @brief Prints out a string
+     * 
+     * @param str The string to print
+     */
+    void print(const std::string& str) {
+        std::cout << str;
+    }
+    void print() { }
 }
 
 #endif
