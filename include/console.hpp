@@ -94,6 +94,11 @@ namespace console {
         print(value);
         std::cout << std::endl;
     }
+
+    /**
+     * @brief Prints out a newline
+     */
+    void println() { std::cout << std::endl; }
 }
 
 #endif
