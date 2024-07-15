@@ -93,6 +93,22 @@ namespace console {
         SetConsoleCursorPosition(hConsole, coord);
         #endif
     }
+
+    /**
+    * @brief Move the cursor up by n lines
+    * 
+    * @param n Number of lines to move by.
+    */
+    void moveCursorUp(int n) {
+        if (isANSIEnabled()) {
+            std::cout << "\033[" << std::to_string(n) << "A";
+            return;
+        }
+        #ifdef __WIN32
+        ConsoleCoord coord = getCursorPosition();
+        moveCursorToPosition(coord.X, coord.Y - n);
+        #endif
+    }
 }
 
 #endif
