@@ -82,6 +82,18 @@ namespace console {
         std::cout << str;
     }
     void print() { }
+
+    /**
+     * @brief Prints out an object, then a newline
+     * 
+     * @tparam T Type of the item passed in
+     * @param value Value to print
+     */
+    template<typename T>
+    void println(const T& value) { 
+        print(value);
+        std::cout << std::endl;
+    }
 }
 
 #endif
