@@ -15,9 +15,9 @@ int main() {
     };
     int arr[] = {0, 1, 2, 3, 4};
 
-    console::print("Wow!");
-    console::print(vec);
-    console::print(m);
-    console::print(arr);
+    console::println("Wow!");
+    console::println(vec);
+    console::println(m);
+    console::println(arr);
     return 0;
 }
