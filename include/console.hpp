@@ -41,6 +41,26 @@ namespace console {
             std::cout << value; 
         }
     }
+
+    /**
+     * @brief Prints out the values of an array
+     * 
+     * @tparam T Type of the array
+     * @tparam N Length of the array
+     * @param arr The array
+     */
+    template<typename T, size_t N, typename std::enable_if_t<is_not_string<T>::value, int> = 0>
+    void print(const T (&arr)[N]) {
+        std::cout << "{ ";
+        std::size_t count = 0;
+        for (const auto& element : arr) {
+            print(element);
+            if (count != N - 1)
+                std::cout << ", ";
+            count++;
+        }
+        std::cout << " }";
+    }
 }
 
 #endif

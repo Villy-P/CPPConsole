@@ -13,9 +13,11 @@ int main() {
         {3, 9},
         {4, 16}
     };
+    int arr[] = {0, 1, 2, 3, 4};
 
     console::print("Wow!");
     console::print(vec);
     console::print(m);
+    console::print(arr);
     return 0;
 }
