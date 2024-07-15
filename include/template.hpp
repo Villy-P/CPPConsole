@@ -40,6 +40,9 @@ namespace console {
             is = decltype(check<T>(0))::value
         };
     };
+
+    template<typename T>
+    struct is_not_string : std::integral_constant<bool, !std::is_same_v<T, std::string>> {};
 }
 
 #endif
