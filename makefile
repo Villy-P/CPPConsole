@@ -8,4 +8,4 @@ reset:
 
 run:
 	ninja -C build
-	.\EXECUTABLE.exe 
+	.\CPP_CONSOLE.exe 
