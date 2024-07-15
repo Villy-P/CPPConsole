@@ -14,11 +14,43 @@
 
 #include "console.hpp"
 #include "ansi.hpp"
+#include "data.hpp"
 
 /**
  * @brief Namespace Containing all console commands
  */
 namespace console {
+    /**
+     * @brief Gets the position of the cursor within the console
+     * 
+     * @return The row, col position within the console
+     */
+    ConsoleCoord getCursorPosition() {
+        #ifdef __WIN32
+        CONSOLE_SCREEN_BUFFER_INFO cbsi;
+        GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cbsi);
+        return { cbsi.dwCursorPosition.X, cbsi.dwCursorPosition.Y };
+        #else
+        ConsoleCoord coord;
+        struct termios term, term_orig;
+        tcgetattr(STDIN_FILENO, &term);
+        term_orig = term;
+
+        term.c_lflag &= ~(ICANON | ECHO);
+        tcsetattr(STDIN_FILENO, TCSANOW, &term);
+        std::cout << "\033[6n";
+        std::cin.ignore();
+
+        char ignore;
+        std::cin >> ignore >> coord.X;
+        std::cin.ignore();
+        std::cin >> coord.Y;
+
+        tcsetattr(STDIN_FILENO, TCSANOW, &term_orig);
+        return coord;
+        #endif
+    }
+
     /**
      * @brief Moves cursor to home position (0, 0)
      */

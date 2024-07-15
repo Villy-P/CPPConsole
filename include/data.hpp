@@ -1,5 +1,5 @@
-#ifndef __CPP_CONSOLE_CURSOR_HPP__
-#define __CPP_CONSOLE_CURSOR_HPP__
+#ifndef __CPP_CONSOLE_DATA_HPP__
+#define __CPP_CONSOLE_DATA_HPP__
 
 #include "console.hpp"
 
@@ -11,8 +11,8 @@ namespace console {
      * @brief A position on the console (row and column)
      */
     typedef struct {
-        int row;
-        int col;
+        int X;
+        int Y;
     } ConsoleCoord;
 }
 
