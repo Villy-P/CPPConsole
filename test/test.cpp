@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "console.hpp"
+#include "printall.hpp"
 
 int main() {
     std::vector<int> vec = {0, 1, 2, 4, 8, 16};
@@ -19,5 +20,8 @@ int main() {
     console::println(vec);
     console::println(m);
     console::println(arr);
+
+    console::println();
+    console::printAll("Wow!", vec, m, arr);
     return 0;
 }
