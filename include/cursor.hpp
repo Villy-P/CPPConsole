@@ -189,6 +189,22 @@ namespace console {
         moveCursorToPosition(0, coord.Y - n);
         #endif
     }
+
+    /**
+    * @brief Moves cursor to column n
+    * 
+    * @param n Column to move to
+    */
+    void moveCursorToColumn(int n) {
+        if (isANSIEnabled()) {
+            std::cout << "\033[" << std::to_string(n) << "G";
+            return;
+        }
+        #ifdef __WIN32
+        ConsoleCoord coord = getCursorPosition();
+        moveCursorToPosition(coord.X, n);
+        #endif
+    }
 }
 
 #endif
