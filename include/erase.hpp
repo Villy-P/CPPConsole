@@ -74,6 +74,33 @@ namespace console {
         SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
         #endif
     }
+
+    /**
+     * @brief Erases the entire screen
+     */
+    void eraseEntireScreen() {
+        if (isANSIEnabled()) {
+            std::cout << "\033[2J";
+            return;
+        }
+        #ifdef __WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (hConsole == INVALID_HANDLE_VALUE) {
+            std::cerr << "Error: Unable to get console handle." << std::endl;
+            return;
+        }
+        CONSOLE_SCREEN_BUFFER_INFO csbi;
+        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
+            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
+            return;
+        }
+        DWORD cellsToClear = csbi.dwSize.X * csbi.dwSize.Y;
+        DWORD charsWritten;
+        COORD startCoord = {0, 0};
+        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        #endif
+    }
 }
 
 #endif
