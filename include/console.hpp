@@ -61,6 +61,17 @@ namespace console {
         }
         std::cout << " }";
     }
+
+    /**
+     * @brief Prints out a char array
+     * 
+     * @tparam N Size of array
+     * @param arr The array
+     */
+    template<size_t N>
+    void print(const char (&arr)[N]) {
+        std::cout << arr;
+    }
 }
 
 #endif
