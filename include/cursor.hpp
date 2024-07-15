@@ -173,6 +173,22 @@ namespace console {
         moveCursorToPosition(0, coord.Y + n);
         #endif
     }
+    
+    /**
+    * @brief Moves cursor to beginning of previous line, n lines up
+    * 
+    * @param n Number of lines to move by.
+    */
+    void moveCursorUpAndToStart(int n) {
+        if (isANSIEnabled()) {
+            std::cout << "\033[" << std::to_string(n) << "F";
+            return;
+        }
+        #ifdef __WIN32
+        ConsoleCoord coord = getCursorPosition();
+        moveCursorToPosition(0, coord.Y - n);
+        #endif
+    }
 }
 
 #endif
