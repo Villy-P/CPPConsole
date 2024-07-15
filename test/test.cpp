@@ -25,6 +25,6 @@ int main() {
     console::println();
     console::printlnAll("Wow!", vec, m, arr);
 
-    console::moveCursorHome();
+    console::moveCursorToPosition(5, 5);
     return 0;
 }

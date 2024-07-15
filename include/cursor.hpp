@@ -37,6 +37,30 @@ namespace console {
         SetConsoleCursorPosition(hConsole, homeCoords);
         #endif
     }
+
+    /**
+     * @brief Move the cursor to the specified position in the console
+     * 
+     * @param row Row to move to
+     * @param col Column to move to
+     */
+    void moveCursorToPosition(int row, int col) {
+        if (isANSIEnabled()) {
+            std::cout << "\033[" << std::to_string(row) << ";" << std::to_string(col) << "H";
+            return;
+        }
+        #ifdef __WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (hConsole == INVALID_HANDLE_VALUE) {
+            std::cerr << "Error: Unable to get console handle." << std::endl;
+            return;
+        }
+        COORD coord;
+        coord.X = row;
+        coord.Y = col;
+        SetConsoleCursorPosition(hConsole, coord);
+        #endif
+    }
 }
 
 #endif
