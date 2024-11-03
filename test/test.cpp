@@ -28,5 +28,9 @@ int main() {
 
     console::moveCursorUp(5);
     console::eraseEntireScreen();
+
+    console::printAll("WOW", vec);
+    console::moveCursorLeft(10);
+    console::eraseFromCursorToEOL();
     return 0;
 }
