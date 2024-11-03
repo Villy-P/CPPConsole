@@ -101,6 +101,86 @@ namespace console {
         FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
         #endif
     }
+
+    /**
+     * @brief Erases from the cursor position to the end of the line
+     */
+    void eraseFromCursorToEOL() {
+        if (isANSIEnabled()) {
+            std::cout << "\033[0K";
+            return;
+        }
+        #ifdef __WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (hConsole == INVALID_HANDLE_VALUE) {
+            std::cerr << "Error: Unable to get console handle." << std::endl;
+            return;
+        }
+        CONSOLE_SCREEN_BUFFER_INFO csbi;
+        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
+            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
+            return;
+        }
+        DWORD cellsToClear = csbi.dwSize.X - csbi.dwCursorPosition.X;
+        DWORD charsWritten;
+        COORD startCoord = csbi.dwCursorPosition;
+        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+        #endif
+    }
+
+    /**
+     * @brief Erases from the cursor position to the beginning of the line
+     */
+    void eraseFromCursorToBOL() {
+        if (isANSIEnabled()) {
+            std::cout << "\033[1K";
+            return;
+        }
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (hConsole == INVALID_HANDLE_VALUE) {
+            std::cerr << "Error: Unable to get console handle." << std::endl;
+            return;
+        }
+        CONSOLE_SCREEN_BUFFER_INFO csbi;
+        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
+            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
+            return;
+        }
+        DWORD cellsToClear = csbi.dwCursorPosition.X + 1;
+        DWORD charsWritten;
+        COORD startCoord = {0, csbi.dwCursorPosition.Y};
+        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+    }
+
+    /**
+     * @brief Erases the line the cursor is currently on
+     */
+    void eraseCurrentLine() {
+        if (isANSIEnabled()) {
+            std::cout << "\033[2K";
+            return;
+        }
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (hConsole == INVALID_HANDLE_VALUE) {
+            std::cerr << "Error: Unable to get console handle." << std::endl;
+            return;
+        }
+        CONSOLE_SCREEN_BUFFER_INFO csbi;
+        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
+            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
+            return;
+        }
+        DWORD cellsToClear = csbi.dwSize.X;
+        DWORD charsWritten;
+        COORD startCoord = {0, csbi.dwCursorPosition.Y};
+        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+    }
 }
 
 #endif
