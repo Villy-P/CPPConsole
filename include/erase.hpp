@@ -101,6 +101,16 @@ namespace console {
         FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
         #endif
     }
+
+    /**
+     * @brief Erases from the cursor position to the end of the line
+     */
+    void eraseFromCursorToEOL() {
+        if (isANSIEnabled()) {
+            std::cout << "\033[0K";
+            return;
+        }
+    }
 }
 
 #endif
