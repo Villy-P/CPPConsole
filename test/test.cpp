@@ -36,6 +36,6 @@ int main() {
     console::println();
     console::print("BOL Testing");
     console::moveCursorLeft(3);
-    console::eraseFromCursorToBOL();
+    console::eraseCurrentLine();
     return 0;
 }
