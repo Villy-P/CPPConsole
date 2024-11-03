@@ -32,5 +32,10 @@ int main() {
     console::printAll("WOW", vec);
     console::moveCursorLeft(10);
     console::eraseFromCursorToEOL();
+
+    console::println();
+    console::print("BOL Testing");
+    console::moveCursorLeft(3);
+    console::eraseFromCursorToBOL();
     return 0;
 }
