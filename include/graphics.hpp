@@ -44,6 +44,15 @@ namespace console {
             return "\033[4m" + str + "\033[24m";
         return str;
     }
+
+    /**
+     * @brief Returns a blinking string if ANSI is enabled
+     */
+    std::string blink(const std::string& str) {
+        if (isANSIEnabled())
+            return "\033[5m" + str + "\033[25m";
+        return str;
+    }
 }
 
 #endif
