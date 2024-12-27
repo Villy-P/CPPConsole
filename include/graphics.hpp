@@ -26,6 +26,15 @@ namespace console {
             return "\033[2m" + str + "\033[0m";
         return str;
     }
+
+    /**
+     * @brief Returns an italicized string if ANSI is enabled
+     */
+    std::string italic(const std::string& str) {
+        if (isANSIEnabled())
+            return "\033[3m" + str + "\033[0m";
+        return str;
+    }
 }
 
 #endif
