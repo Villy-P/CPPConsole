@@ -71,6 +71,15 @@ namespace console {
             return "\033[8m" + str + "\033[28m";
         return str;
     }
+
+    /**
+     * @brief Returns a strikethough string if ANSI is enabled
+     */
+    std::string strikethrough(const std::string& str) {
+        if (isANSIEnabled())
+            return "\033[9m" + str + "\033[29m";
+        return str;
+    }
 }
 
 #endif

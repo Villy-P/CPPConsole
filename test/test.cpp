@@ -35,5 +35,7 @@ int main() {
     console::println(console::blink("Blinking Text!"));
     console::println(console::inverse("Reversed Text!"));
     console::println(console::hidden("Hidden Text!"));
+    console::println(console::strikethrough("Strikethrough Text!"));
+    console::println(console::bold(console::faint(console::italic(console::underline(console::blink(console::inverse(console::strikethrough("All Text Effects!"))))))));
     return 0;
 }
