@@ -80,6 +80,33 @@ namespace console {
             return "\033[9m" + str + "\033[29m";
         return str;
     }
+
+    /**
+     * @brief Sets the text to be bold or not
+     * 
+     * @param set Enable/Disable bold text
+     */
+    void setBold(bool set) {
+        if (isANSIEnabled()) {
+            std::cout << (set ? "\033[1m" : "\033[22m");
+            return;
+        }
+    }
+
+    /**
+     * @brief Sets the text to be faint/dim or not
+     * 
+     * @param set Enable/Disable faint/dim text
+     */
+    void setFaint(bool set) {
+        if (isANSIEnabled()) {
+            std::cout << (set ? "\033[2m" : "\033[22m");
+            return;
+        }
+        #ifdef __WIN32
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), set ? FOREGROUND_INTENSITY : (FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE));
+        #endif
+    }
 }
 
 #endif
