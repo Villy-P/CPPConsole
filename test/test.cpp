@@ -62,22 +62,18 @@ int main() {
     std::cin.get();
     console::eraseEntireScreen();
     console::moveCursorHome();
-    console::print("Testing Text Effects");
+    console::println("Testing Text Effects");
+    console::print(console::bold("Bold "));
+    console::print(console::faint("Faint "));
+    console::print(console::italic("Italic "));
+    console::print(console::underline("Underline "));
+    console::print(console::blink("Blink "));
+    console::print(console::inverse("Inverse "));
+    console::print(console::hidden("Hidden "));
+    console::print(console::strikethrough("Strikethrough "));
+    console::println();
 
-    // console::println(console::bold("Bold Text!"));
-    // console::println(console::faint("Faint Text!"));
-    // console::println(console::italic("Italic Text!"));
-    // console::println(console::bold(console::faint(console::italic("Bold, Faint, Italic Text!"))));
-    // console::println(console::underline("Underlined Text!"));
-    // console::println(console::blink("Blinking Text!"));
-    // console::println(console::inverse("Reversed Text!"));
-    // console::println(console::hidden("Hidden Text!"));
-    // console::println(console::strikethrough("Strikethrough Text!"));
-    // console::println(console::bold(console::faint(console::italic(console::underline(console::blink(console::inverse(console::strikethrough("All Text Effects!"))))))));
 
-    // console::setBold(true);
-    // console::println("Bold Text!");
-    // console::setBold(false);
-    // console::println("Normal Text!");
+    console::print("Testing Finished");
     return 0;
 }
