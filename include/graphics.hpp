@@ -53,6 +53,15 @@ namespace console {
             return "\033[5m" + str + "\033[25m";
         return str;
     }
+
+    /**
+     * @brief Returns a inversed/reversed string if ANSI is enabled
+     */
+    std::string inverse(const std::string& str) {
+        if (isANSIEnabled())
+            return "\033[7m" + str + "\033[27m";
+        return str;
+    }
 }
 
 #endif

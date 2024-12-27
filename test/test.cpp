@@ -33,5 +33,6 @@ int main() {
     console::println(console::bold(console::faint(console::italic("Bold, Faint, Italic Text!"))));
     console::println(console::underline("Underlined Text!"));
     console::println(console::blink("Blinking Text!"));
+    console::println(console::reverse("Reversed Text!"));
     return 0;
 }
