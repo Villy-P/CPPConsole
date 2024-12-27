@@ -6,6 +6,7 @@
 #include "printall.hpp"
 #include "cursor.hpp"
 #include "erase.hpp"
+#include "graphics.hpp"
 
 int main() {
     std::vector<int> vec = {0, 1, 2, 4, 8, 16};
@@ -25,5 +26,16 @@ int main() {
 
     console::println();
     console::printlnAll("Wow!", vec, m, arr);
+
+    console::println(console::bold("Bold Text!"));
+    console::println(console::faint("Faint Text!"));
+    console::println(console::italic("Italic Text!"));
+    console::println(console::bold(console::faint(console::italic("Bold, Faint, Italic Text!"))));
+    console::println(console::underline("Underlined Text!"));
+    console::println(console::blink("Blinking Text!"));
+    console::println(console::inverse("Reversed Text!"));
+    console::println(console::hidden("Hidden Text!"));
+    console::println(console::strikethrough("Strikethrough Text!"));
+    console::println(console::bold(console::faint(console::italic(console::underline(console::blink(console::inverse(console::strikethrough("All Text Effects!"))))))));
     return 0;
 }
