@@ -76,6 +76,18 @@ namespace console {
             return "\033[" + std::to_string(foreground ? 38 : 48) + ";5;" + std::to_string(color) + "m" + str + "\033[0m";
         return str;
     }
+
+    /**
+     * @brief Colors the text color to a custom RGB color
+     * 
+     * @param color The color to set the text to
+     * @param foreground Whether to set the foreground or background color (default is foreground)
+     */
+    std::string colorize(const std::string& str, unsigned char r, unsigned char g, unsigned char b, bool foreground = true) {
+        if (isANSIEnabled())
+            return "\033[" + std::to_string(foreground ? 38 : 48) + ";2;" + std::to_string(r) + ";" + std::to_string(g) + ";" + std::to_string(b) + "m" + str + "\033[0m";
+        return str;
+    }
 }
 
 #endif
