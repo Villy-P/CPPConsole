@@ -1,5 +1,9 @@
-#ifndef __CPP_CONSOLE_HPP__
-#define __CPP_CONSOLE_HPP__
+#ifndef __CPP_CONSOLE_COLOR_HPP__
+#define __CPP_CONSOLE_COLOR_HPP__
+
+#include "ansi.hpp"
+
+#include <string>
 
 /**
  * @brief Namespace Containing all console commands
@@ -45,6 +49,17 @@ namespace console {
         BG_BRIGHT_CYAN,
         BG_BRIGHT_WHITE
     };
+
+    /**
+     * @brief Colors the text color to a predefined color
+     * 
+     * @param color The color to set the text to
+     */
+    std::string colorize(const std::string& str, Graphics color) {
+        if (isANSIEnabled())
+            return "\033[" + std::to_string(color) + "m" + str + "\033[0m";
+        return str;
+    }
 }
 
 #endif
