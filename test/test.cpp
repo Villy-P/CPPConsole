@@ -40,6 +40,30 @@ int main() {
     console::printAll("Wow!", vec, m, arr, "\n");
     console::printlnAll("Wow!", vec, m, arr);
 
+    console::println("Press ENTER to continue.");
+    std::cin.get();
+    console::eraseEntireScreen();
+    console::moveCursorHome();
+    console::print("Testing Cursor Movement");
+    console::moveCursorDown(5);
+    console::print("Moved Down 5 Lines");
+    console::moveCursorUp(5);
+    console::print("Moved Up 5 Lines");
+    console::moveCursorRight(50);
+    console::print("Moved Right 50 Characters");
+    console::moveCursorDown(5);
+    console::moveCursorLeft(50);
+    console::print("Moved Left 50 Characters");
+    console::moveCursorHome();
+    console::moveCursorDown(6);
+
+
+    console::print("Press ENTER to continue");
+    std::cin.get();
+    console::eraseEntireScreen();
+    console::moveCursorHome();
+    console::print("Testing Text Effects");
+
     // console::println(console::bold("Bold Text!"));
     // console::println(console::faint("Faint Text!"));
     // console::println(console::italic("Italic Text!"));
