@@ -31,5 +31,6 @@ int main() {
     console::println(console::faint("Faint Text!"));
     console::println(console::italic("Italic Text!"));
     console::println(console::bold(console::faint(console::italic("Bold, Faint, Italic Text!"))));
+    console::println(console::underline("Underlined Text!"));
     return 0;
 }

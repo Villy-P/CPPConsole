@@ -35,6 +35,15 @@ namespace console {
             return "\033[3m" + str + "\033[23m";
         return str;
     }
+
+    /**
+     * @brief Returns an underlined string if ANSI is enabled
+     */
+    std::string underline(const std::string& str) {
+        if (isANSIEnabled())
+            return "\033[4m" + str + "\033[24m";
+        return str;
+    }
 }
 
 #endif
