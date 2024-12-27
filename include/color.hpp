@@ -60,6 +60,22 @@ namespace console {
             return "\033[" + std::to_string(color) + "m" + str + "\033[0m";
         return str;
     }
+
+    /**
+     * @brief Colors the text color to a custom color, between 0 to 255
+     * 
+     * From 0 to 15, the colors are the standard ANSI colors
+     * From 16 to 231, the color uses the forumla `16 + (R × 36) + (G × 6) + B`
+     * From 232 to 255, the colors are grayscale
+     * 
+     * @param color Color to set the text to
+     * @param foreground Whether to set the foreground or background color (default is foreground)
+     */
+    std::string colorize(const std::string& str, unsigned char color, bool foreground = true) {
+        if (isANSIEnabled())
+            return "\033[" + std::to_string(foreground ? 38 : 48) + ";5;" + std::to_string(color) + "m" + str + "\033[0m";
+        return str;
+    }
 }
 
 #endif

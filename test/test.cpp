@@ -80,7 +80,7 @@ int main() {
     console::eraseEntireScreen();
     console::moveCursorHome();
     console::println("Testing Colors");
-    console::print("Basic Colors: ");
+    console::println("Basic Colors: ");
     for (int i = 30; i < 38; ++i)
         console::print(console::colorize(std::to_string(i), static_cast<console::Graphics>(i)) + " ");
     for (int i = 40; i < 48; ++i)
@@ -89,6 +89,20 @@ int main() {
         console::print(console::colorize(std::to_string(i), static_cast<console::Graphics>(i)) + " ");
     for (int i = 100; i < 108; ++i)
         console::print(console::colorize(std::to_string(i), static_cast<console::Graphics>(i)) + " ");
+    console::println();
+
+    console::println("256 Colors: ");
+    for (int i = 0; i < 256; ++i) {
+        if (i % 32 == 0)
+            console::println();
+        console::print(console::colorize(std::string(3 - std::to_string(i).length(), ' ') + std::to_string(i), i) + " ");
+    }
+
+    for (int i = 0; i < 256; ++i) {
+        if (i % 32 == 0)
+            console::println();
+        console::print(console::colorize(std::string(3 - std::to_string(i).length(), ' ') + std::to_string(i), i, false) + " ");
+    }
     console::println();
 
     console::print("Testing Finished");
