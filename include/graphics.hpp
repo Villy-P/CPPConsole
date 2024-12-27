@@ -107,6 +107,78 @@ namespace console {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), set ? FOREGROUND_INTENSITY : (FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE));
         #endif
     }
+
+    /**
+     * @brief Sets the text to be italicized or not
+     * 
+     * @param set Enable/Disable italicized text
+     */
+    void setItalic(bool set) {
+        if (isANSIEnabled()) {
+            std::cout << (set ? "\033[3m" : "\033[23m");
+            return;
+        }
+    }
+
+    /**
+     * @brief Sets the text to be underlined or not
+     * 
+     * @param set Enable/Disable underlined text
+     */
+    void setUnderline(bool set) {
+        if (isANSIEnabled()) {
+            std::cout << (set ? "\033[4m" : "\033[24m");
+            return;
+        }
+    }
+
+    /**
+     * @brief Sets the text to be blinking or not
+     * 
+     * @param set Enable/Disable blinking text
+     */
+    void setBlink(bool set) {
+        if (isANSIEnabled()) {
+            std::cout << (set ? "\033[5m" : "\033[25m");
+            return;
+        }
+    }
+
+    /**
+     * @brief Sets the text to be inversed/reversed or not
+     * 
+     * @param set Enable/Disable inversed/reversed text
+     */
+    void setInverse(bool set) {
+        if (isANSIEnabled()) {
+            std::cout << (set ? "\033[7m" : "\033[27m");
+            return;
+        }
+    }
+
+    /**
+     * @brief Sets the text to be hidden or not
+     * 
+     * @param set Enable/Disable hidden text
+     */
+    void setHidden(bool set) {
+        if (isANSIEnabled()) {
+            std::cout << (set ? "\033[8m" : "\033[28m");
+            return;
+        }
+    }
+
+    /**
+     * @brief Sets the text to be strikethrough or not
+     * 
+     * @param set Enable/Disable strikethrough text
+     */
+    void setStrikethrough(bool set) {
+        if (isANSIEnabled()) {
+            std::cout << (set ? "\033[9m" : "\033[29m");
+            return;
+        }
+    }
 }
 
 #endif
