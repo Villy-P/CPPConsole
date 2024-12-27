@@ -17,6 +17,15 @@ namespace console {
             return "\033[1m" + str + "\033[0m";
         return str;
     }
+
+    /**
+     * @brief Returns a faint/dim string if ANSI is enabled
+     */
+    std::string faint(const std::string& str) {
+        if (isANSIEnabled())
+            return "\033[2m" + str + "\033[0m";
+        return str;
+    }
 }
 
 #endif

@@ -28,5 +28,6 @@ int main() {
     console::printlnAll("Wow!", vec, m, arr);
 
     console::println(console::bold("Bold Text!"));
+    console::println(console::faint("Faint Text!"));
     return 0;
 }
