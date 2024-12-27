@@ -37,5 +37,10 @@ int main() {
     console::println(console::hidden("Hidden Text!"));
     console::println(console::strikethrough("Strikethrough Text!"));
     console::println(console::bold(console::faint(console::italic(console::underline(console::blink(console::inverse(console::strikethrough("All Text Effects!"))))))));
+
+    console::setBold(true);
+    console::println("Bold Text!");
+    console::setBold(false);
+    console::println("Normal Text!");
     return 0;
 }
