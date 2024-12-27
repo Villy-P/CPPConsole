@@ -25,17 +25,5 @@ int main() {
 
     console::println();
     console::printlnAll("Wow!", vec, m, arr);
-
-    console::moveCursorUp(5);
-    console::eraseEntireScreen();
-
-    console::printAll("WOW", vec);
-    console::moveCursorLeft(10);
-    console::eraseFromCursorToEOL();
-
-    console::println();
-    console::print("BOL Testing");
-    console::moveCursorLeft(3);
-    console::eraseCurrentLine();
     return 0;
 }

@@ -19,6 +19,27 @@
  * @brief Namespace Containing all console commands
  */
 namespace console {
+    #ifdef __WIN32
+    typedef struct {
+        HANDLE hConsole;
+        CONSOLE_SCREEN_BUFFER_INFO csbi;
+    } ConsoleInfo;
+
+    ConsoleInfo getConsoleInfo() {
+        ConsoleInfo info;
+        info.hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (info.hConsole == INVALID_HANDLE_VALUE) {
+            std::cerr << "Error: Unable to get console handle." << std::endl;
+            return info;
+        }
+        if (!GetConsoleScreenBufferInfo(info.hConsole, &info.csbi)) {
+            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
+            return info;
+        }
+        return info;
+    }
+    #endif
+
     /**
     * @brief Erases the screen from the cursor to the end of screen
     */
@@ -28,22 +49,13 @@ namespace console {
             return;
         }
         #ifdef __WIN32
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        if (hConsole == INVALID_HANDLE_VALUE) {
-            std::cerr << "Error: Unable to get console handle." << std::endl;
-            return;
-        }
-        CONSOLE_SCREEN_BUFFER_INFO csbi;
-        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
-            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
-            return;
-        }
-        DWORD cellsToClear = csbi.dwSize.X * (csbi.dwSize.Y - csbi.dwCursorPosition.Y - 1) + (csbi.dwSize.X - csbi.dwCursorPosition.X);
+        ConsoleInfo info = getConsoleInfo();
+        DWORD cellsToClear = info.csbi.dwSize.X * (info.csbi.dwSize.Y - info.csbi.dwCursorPosition.Y - 1) + (info.csbi.dwSize.X - info.csbi.dwCursorPosition.X);
         DWORD charsWritten;
-        COORD startCoord = csbi.dwCursorPosition;
-        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
-        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
-        SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+        COORD startCoord = info.csbi.dwCursorPosition;
+        FillConsoleOutputCharacter(info.hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(info.hConsole, info.csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        SetConsoleCursorPosition(info.hConsole, info.csbi.dwCursorPosition);
         #endif
     }
 
@@ -56,22 +68,13 @@ namespace console {
             return;
         }
         #ifdef __WIN32
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        if (hConsole == INVALID_HANDLE_VALUE) {
-            std::cerr << "Error: Unable to get console handle." << std::endl;
-            return;
-        }
-        CONSOLE_SCREEN_BUFFER_INFO csbi;
-        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
-            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
-            return;
-        }
-        DWORD cellsToClear = csbi.dwCursorPosition.Y * csbi.dwSize.X + csbi.dwCursorPosition.X + 1;
+        ConsoleInfo info = getConsoleInfo();
+        DWORD cellsToClear = info.csbi.dwCursorPosition.Y * info.csbi.dwSize.X + info.csbi.dwCursorPosition.X + 1;
         DWORD charsWritten;
         COORD startCoord = {0, 0};
-        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
-        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
-        SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+        FillConsoleOutputCharacter(info.hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(info.hConsole, info.csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        SetConsoleCursorPosition(info.hConsole, info.csbi.dwCursorPosition);
         #endif
     }
 
@@ -84,21 +87,12 @@ namespace console {
             return;
         }
         #ifdef __WIN32
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        if (hConsole == INVALID_HANDLE_VALUE) {
-            std::cerr << "Error: Unable to get console handle." << std::endl;
-            return;
-        }
-        CONSOLE_SCREEN_BUFFER_INFO csbi;
-        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
-            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
-            return;
-        }
-        DWORD cellsToClear = csbi.dwSize.X * csbi.dwSize.Y;
+        ConsoleInfo info = getConsoleInfo();
+        DWORD cellsToClear = info.csbi.dwSize.X * info.csbi.dwSize.Y;
         DWORD charsWritten;
         COORD startCoord = {0, 0};
-        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
-        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputCharacter(info.hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(info.hConsole, info.csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
         #endif
     }
 
@@ -111,22 +105,13 @@ namespace console {
             return;
         }
         #ifdef __WIN32
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        if (hConsole == INVALID_HANDLE_VALUE) {
-            std::cerr << "Error: Unable to get console handle." << std::endl;
-            return;
-        }
-        CONSOLE_SCREEN_BUFFER_INFO csbi;
-        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
-            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
-            return;
-        }
-        DWORD cellsToClear = csbi.dwSize.X - csbi.dwCursorPosition.X;
+        ConsoleInfo info = getConsoleInfo();
+        DWORD cellsToClear = info.csbi.dwSize.X - info.csbi.dwCursorPosition.X;
         DWORD charsWritten;
-        COORD startCoord = csbi.dwCursorPosition;
-        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
-        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
-        SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+        COORD startCoord = info.csbi.dwCursorPosition;
+        FillConsoleOutputCharacter(info.hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(info.hConsole, info.csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        SetConsoleCursorPosition(info.hConsole, info.csbi.dwCursorPosition);
         #endif
     }
 
@@ -138,22 +123,13 @@ namespace console {
             std::cout << "\033[1K";
             return;
         }
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        if (hConsole == INVALID_HANDLE_VALUE) {
-            std::cerr << "Error: Unable to get console handle." << std::endl;
-            return;
-        }
-        CONSOLE_SCREEN_BUFFER_INFO csbi;
-        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
-            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
-            return;
-        }
-        DWORD cellsToClear = csbi.dwCursorPosition.X + 1;
+        ConsoleInfo info = getConsoleInfo();
+        DWORD cellsToClear = info.csbi.dwCursorPosition.X + 1;
         DWORD charsWritten;
-        COORD startCoord = {0, csbi.dwCursorPosition.Y};
-        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
-        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
-        SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+        COORD startCoord = {0, info.csbi.dwCursorPosition.Y};
+        FillConsoleOutputCharacter(info.hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(info.hConsole, info.csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        SetConsoleCursorPosition(info.hConsole, info.csbi.dwCursorPosition);
     }
 
     /**
@@ -164,22 +140,13 @@ namespace console {
             std::cout << "\033[2K";
             return;
         }
-        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        if (hConsole == INVALID_HANDLE_VALUE) {
-            std::cerr << "Error: Unable to get console handle." << std::endl;
-            return;
-        }
-        CONSOLE_SCREEN_BUFFER_INFO csbi;
-        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) {
-            std::cerr << "Error: Unable to get console screen buffer info." << std::endl;
-            return;
-        }
-        DWORD cellsToClear = csbi.dwSize.X;
+        ConsoleInfo info = getConsoleInfo();
+        DWORD cellsToClear = info.csbi.dwSize.X;
         DWORD charsWritten;
-        COORD startCoord = {0, csbi.dwCursorPosition.Y};
-        FillConsoleOutputCharacter(hConsole, ' ', cellsToClear, startCoord, &charsWritten);
-        FillConsoleOutputAttribute(hConsole, csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
-        SetConsoleCursorPosition(hConsole, csbi.dwCursorPosition);
+        COORD startCoord = {0, info.csbi.dwCursorPosition.Y};
+        FillConsoleOutputCharacter(info.hConsole, ' ', cellsToClear, startCoord, &charsWritten);
+        FillConsoleOutputAttribute(info.hConsole, info.csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
+        SetConsoleCursorPosition(info.hConsole, info.csbi.dwCursorPosition);
     }
 }
 
