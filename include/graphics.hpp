@@ -14,7 +14,7 @@ namespace console {
      */
     std::string bold(const std::string& str) {
         if (isANSIEnabled())
-            return "\033[1m" + str + "\033[0m";
+            return "\033[1m" + str + "\033[22m";
         return str;
     }
 
@@ -23,7 +23,7 @@ namespace console {
      */
     std::string faint(const std::string& str) {
         if (isANSIEnabled())
-            return "\033[2m" + str + "\033[0m";
+            return "\033[2m" + str + "\033[22m";
         return str;
     }
 
@@ -32,7 +32,7 @@ namespace console {
      */
     std::string italic(const std::string& str) {
         if (isANSIEnabled())
-            return "\033[3m" + str + "\033[0m";
+            return "\033[3m" + str + "\033[23m";
         return str;
     }
 }
