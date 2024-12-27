@@ -20,10 +20,10 @@
  */
 namespace console {
     #ifdef __WIN32
-    typedef struct ConsoleInfo {
+    typedef struct {
         HANDLE hConsole;
         CONSOLE_SCREEN_BUFFER_INFO csbi;
-    };
+    } ConsoleInfo;
 
     ConsoleInfo getConsoleInfo() {
         ConsoleInfo info;
