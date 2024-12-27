@@ -6,6 +6,7 @@
 #include "printall.hpp"
 #include "cursor.hpp"
 #include "erase.hpp"
+#include "graphics.hpp"
 
 int main() {
     std::vector<int> vec = {0, 1, 2, 4, 8, 16};
@@ -25,5 +26,7 @@ int main() {
 
     console::println();
     console::printlnAll("Wow!", vec, m, arr);
+
+    console::println(console::bold("Bold Text!"));
     return 0;
 }
