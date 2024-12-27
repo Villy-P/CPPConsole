@@ -62,6 +62,15 @@ namespace console {
             return "\033[7m" + str + "\033[27m";
         return str;
     }
+
+    /**
+     * @brief Returns a hidden string if ANSI is enabled
+     */
+    std::string hidden(const std::string& str) {
+        if (isANSIEnabled())
+            return "\033[8m" + str + "\033[28m";
+        return str;
+    }
 }
 
 #endif
