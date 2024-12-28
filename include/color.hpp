@@ -14,6 +14,14 @@ namespace console {
      * 
      */
     enum Graphics {
+        BOLD = 1,
+        DIM,
+        ITALIC,
+        UNDERLINE,
+        BLINK,
+        INVERT,
+        HIDDEN,
+        STRIKETHROUGH,
         BLACK = 30,
         RED,
         GREEN,
