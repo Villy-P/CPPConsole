@@ -108,7 +108,6 @@ int main() {
         console::print(console::colorize(std::string(3 - std::to_string(i).length(), ' ') + std::to_string(i), i, false) + " ");
     }
     console::println();
-
     console::print("Testing Finished");
     return 0;
 }

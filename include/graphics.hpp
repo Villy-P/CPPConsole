@@ -4,6 +4,7 @@
 #include "ansi.hpp"
 
 #include <string>
+#include <initializer_list>
 
 /**
  * @brief Namespace Containing all console commands
@@ -57,7 +58,7 @@ namespace console {
         BG_BRIGHT_CYAN,
         BG_BRIGHT_WHITE
     };
-    
+
     /**
      * @brief Returns a bolded string if ANSI is enabled
      */
@@ -225,6 +226,26 @@ namespace console {
     void setStrikethrough(bool set) {
         if (isANSIEnabled()) {
             std::cout << (set ? "\033[9m" : "\033[29m");
+            return;
+        }
+    }
+
+    void set(std::initializer_list<Graphics> list) {
+        std::string itemStr = "";
+        for (const auto& item : list) {
+            itemStr += std::to_string(item);
+            if (item != *(list.end() - 1))
+                itemStr += ";";
+        }
+        if (isANSIEnabled()) {
+            std::cout << "\033[" << itemStr << "m";
+            return;
+        }
+    }
+
+    void clearGraphics() {
+        if (isANSIEnabled()) {
+            std::cout << "\033[0m";
             return;
         }
     }
