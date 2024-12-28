@@ -97,7 +97,7 @@ int main() {
 
     console::println("256 Colors: ");
     for (int i = 0; i < 256; ++i) {
-        if (i % (dim.width / 4) == 0)
+        if (i % 16 == 0)
             console::println();
         console::print(console::colorize(std::string(3 - std::to_string(i).length(), ' ') + std::to_string(i), i) + " ");
     }
