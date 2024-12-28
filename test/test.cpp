@@ -97,13 +97,13 @@ int main() {
 
     console::println("256 Colors: ");
     for (int i = 0; i < 256; ++i) {
-        if (i % 32 == 0)
+        if (i % (dim.width / 4) == 0)
             console::println();
         console::print(console::colorize(std::string(3 - std::to_string(i).length(), ' ') + std::to_string(i), i) + " ");
     }
 
     for (int i = 0; i < 256; ++i) {
-        if (i % 32 == 0)
+        if (i % (dim.width / 4) == 0)
             console::println();
         console::print(console::colorize(std::string(3 - std::to_string(i).length(), ' ') + std::to_string(i), i, false) + " ");
     }
