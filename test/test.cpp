@@ -8,8 +8,12 @@
 #include "erase.hpp"
 #include "graphics.hpp"
 #include "color.hpp"
+#include "dimensions.hpp"
 
 int main() {
+    console::Dimensions dim = console::getDimensions();
+    console::println("Terminal Dimensions: ");
+    console::printAll("Width:", std::to_string(dim.width), "| Height:", std::to_string(dim.height), "\n");
     console::println("Testing C++ Console. Press ENTER to begin.");
     std::cin.get();
 
