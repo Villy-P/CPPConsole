@@ -5,6 +5,7 @@ CPPConsole is a header-only library for `C++` projects that adds features to the
 ## Using CPPConsole
 
 To use CPPConsole in your project, copy all the file located in the `include/` directory into your own personal `include/` folder.
+
 After that, you can add `#include "cppconsole.hpp"` to your file to include all CPPConsole functions, or include each file individually.
 
 ## Features
@@ -40,3 +41,29 @@ for (int i = 0; i < 256; ++i) {
 
 ![Example 1](./assets/example1.png)
 ![Example 2](./assets/example2.png)
+
+## Usage
+
+`console::print` and `console::println` are the main function that are used for printing.
+
+`console::printAll` and `console::printlnAll` take an infinite amount of arguments, seperating them by spaces
+
+`console::colorize` takes a string and then a color, changing the color of the text
+
+`console::set` takes a list of graphics modes, and sets them all (like BOLD and ITALIC)
+
+`console::clearGraphics` clears all previous graphics modes.
+
+More function can be found throughout the files.
+
+## Contributing
+
+If you'd like to contribute to CPPConsole, or would like to report an issue, please read the [Contributing Guidelines](./.github/CONTRIBUTING.md)
+
+## License
+
+CPPConsole is licensed under the [MIT License](./LICENSE)
+
+## Changelog
+
+CPPConsole's changlog, which includes previous changes and upcoming changes, can be found in [CHANGELOG.md](./CHANGELOG.md)
