@@ -8,8 +8,12 @@
 #include "erase.hpp"
 #include "graphics.hpp"
 #include "color.hpp"
+#include "dimensions.hpp"
 
 int main() {
+    console::Dimensions dim = console::getDimensions();
+    console::println("Terminal Dimensions: ");
+    console::printAll("Width:", std::to_string(dim.width), "| Height:", std::to_string(dim.height), "\n");
     console::println("Testing C++ Console. Press ENTER to begin.");
     std::cin.get();
 
@@ -93,13 +97,13 @@ int main() {
 
     console::println("256 Colors: ");
     for (int i = 0; i < 256; ++i) {
-        if (i % 32 == 0)
+        if (i % (dim.width / 4) == 0)
             console::println();
         console::print(console::colorize(std::string(3 - std::to_string(i).length(), ' ') + std::to_string(i), i) + " ");
     }
 
     for (int i = 0; i < 256; ++i) {
-        if (i % 32 == 0)
+        if (i % (dim.width / 4) == 0)
             console::println();
         console::print(console::colorize(std::string(3 - std::to_string(i).length(), ' ') + std::to_string(i), i, false) + " ");
     }
