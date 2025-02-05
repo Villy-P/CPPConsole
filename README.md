@@ -44,7 +44,7 @@ for (int i = 0; i < 256; ++i) {
 
 ## Usage
 
-`console::print` and `console::println` are the main function that are used for printing.
+`console::print` and `console::println` are the main function that are used for printing. These work with any data structure, from primitives to vectors and maps.
 
 `console::printAll` and `console::printlnAll` take an infinite amount of arguments, seperating them by spaces
 
