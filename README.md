@@ -4,9 +4,64 @@ CPPConsole is a header-only library for `C++` projects that adds features to the
 
 ## Using CPPConsole
 
+### Header-Only Installation (Simple)
+
 To use CPPConsole in your project, copy all the file located in the `include/` directory into your own personal `include/` folder.
 
 After that, you can add `#include "cppconsole.hpp"` to your file to include all CPPConsole functions, or include each file individually.
+
+### CMake Installation (Recommended)
+
+CPPConsole now includes a modern CMake build system that allows easy integration into CMake-based projects.
+
+#### Installing CPPConsole System-Wide
+
+```bash
+# Clone and build
+git clone https://github.com/Villy-P/CPPConsole.git
+cd CPPConsole
+mkdir build && cd build
+
+# Configure (library-only, no tests)
+cmake .. -DCPPCONSOLE_BUILD_TESTS=OFF
+
+# Install to system
+sudo make install
+```
+
+#### Using CPPConsole in Your CMake Project
+
+Once installed, you can easily use CPPConsole in your CMake projects:
+
+```cmake
+# Find the library
+find_package(CPPConsole REQUIRED)
+
+# Create your executable
+add_executable(your_app main.cpp)
+
+# Link to CPPConsole
+target_link_libraries(your_app PRIVATE CPPConsole::CPPConsole)
+
+# Set C++ standard (required)
+target_compile_features(your_app PRIVATE cxx_std_17)
+```
+
+#### Building and Testing CPPConsole
+
+```bash
+# Build with tests (default)
+make build
+
+# Run tests (once build issues are resolved)
+make test
+
+# Build library only
+make configure-lib-only && make build
+
+# Get help
+make help
+```
 
 ## Features
 

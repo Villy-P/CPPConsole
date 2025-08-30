@@ -33,3 +33,14 @@
 
 build/
 .vscode/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Build output directories
+bin/
+lib/
