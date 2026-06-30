@@ -1,8 +1,6 @@
 #ifndef __CPP_CONSOLE_ANSI_HPP__
 #define __CPP_CONSOLE_ANSI_HPP__
 
-#include "console.hpp"
-
 #ifdef __WIN32
 #include <Windows.h>
 #else

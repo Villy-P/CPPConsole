@@ -4,6 +4,7 @@
 #include "ansi.hpp"
 #include "graphics.hpp"
 
+#include <iostream>
 #include <string>
 
 /**

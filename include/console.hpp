@@ -3,6 +3,9 @@
 
 #include "template.hpp"
 
+#include <iostream>
+#include <iterator>
+
 /**
  * @brief Namespace Containing all console commands
  */

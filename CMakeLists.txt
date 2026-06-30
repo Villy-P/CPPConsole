@@ -1,23 +1,28 @@
 cmake_minimum_required(VERSION 3.10)
 project(CPP_CONSOLE VERSION 1.0.0)
 
+set(EXEC_NAME_TEST "CPP_CONSOLE")
 set(CMAKE_CXX_STANDARD 17)
-set(PROJECT_NAME "CPP_CONSOLE")
-if (UNIX)
-    set(PROJECT_NAME "CPP_CONSOLE.exe")
-endif()
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-include_directories(include/)
+# Interface library: anything that links cppconsole::cppconsole gets the
+# include path automatically.
+add_library(cppconsole INTERFACE)
+add_library(cppconsole::cppconsole ALIAS cppconsole)
+target_include_directories(cppconsole INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-add_executable(${PROJECT_NAME} 
-    "${CMAKE_CURRENT_SOURCE_DIR}/test/test.cpp"
-)
+# TODO: Move away from using GLOB_RECURSE and explicitly list source files for better maintainability
+file(GLOB_RECURSE CPPCONSOLE_TEST_SOURCES CONFIGURE_DEPENDS "test/*.cpp")
 
-set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+add_executable(${EXEC_NAME_TEST} ${CPPCONSOLE_TEST_SOURCES})
 
-target_compile_options(${PROJECT_NAME} PRIVATE 
-    "-Wall" 
-    "-std=c++17"
+target_compile_options(${EXEC_NAME_TEST} PRIVATE
+    "-Wall"
+    "-Wextra"
     "-fdiagnostics-color=always"
-    "-g"
+    "$<$<CONFIG:Debug>:-g>"
 )
+
+target_link_libraries(${EXEC_NAME_TEST} PRIVATE cppconsole::cppconsole)

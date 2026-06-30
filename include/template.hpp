@@ -4,6 +4,8 @@
 /**
  * @brief Namespace Containing all console commands
  */
+#include <string>
+#include <utility>
 namespace console {
     /**
      * @brief Template for a iterable data type. Matches things like vector, deque, map, etc. 
