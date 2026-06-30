@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added new `Makefile` targets
 - Added ability to import CPPConsole using CMake's FetchContent
 
+### Fixed
+
+- Fixed windows code not being surrounded by Windows header
+
 ## 1.0.0 - 2024-12-27
 
 ### Added
