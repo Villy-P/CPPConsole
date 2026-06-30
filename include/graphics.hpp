@@ -3,6 +3,7 @@
 
 #include "ansi.hpp"
 
+#include <iostream>
 #include <string>
 #include <initializer_list>
 
