@@ -4,9 +4,29 @@ CPPConsole is a header-only library for `C++` projects that adds features to the
 
 ## Using CPPConsole
 
+### Manually copying include directory
+
 To use CPPConsole in your project, copy all the file located in the `include/` directory into your own personal `include/` folder.
 
 After that, you can add `#include "cppconsole.hpp"` to your file to include all CPPConsole functions, or include each file individually.
+
+### Using CMake
+
+Add this code to your `CMakeLists.txt`:
+
+``` cmake
+include(FetchContent)
+
+FetchContent_Declare(cppconsole
+    GIT_REPOSITORY https://github.com/Villy-P/CPPConsole.git
+    GIT_TAG        main # consider pinning to a release tag or commit SHA for reproducible builds
+)
+FetchContent_MakeAvailable(cppconsole)
+
+target_link_libraries(your_target PRIVATE cppconsole::cppconsole)
+```
+
+Replace `your_target` with the name of your executable or library. All CPPConsole headers will now be available to it.
 
 ## Features
 
