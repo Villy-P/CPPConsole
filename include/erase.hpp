@@ -123,6 +123,8 @@ namespace console {
             std::cout << "\033[1K";
             return;
         }
+        
+        #ifdef __WIN32
         ConsoleInfo info = getConsoleInfo();
         DWORD cellsToClear = info.csbi.dwCursorPosition.X + 1;
         DWORD charsWritten;
@@ -130,6 +132,7 @@ namespace console {
         FillConsoleOutputCharacter(info.hConsole, ' ', cellsToClear, startCoord, &charsWritten);
         FillConsoleOutputAttribute(info.hConsole, info.csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
         SetConsoleCursorPosition(info.hConsole, info.csbi.dwCursorPosition);
+        #endif
     }
 
     /**
@@ -140,6 +143,7 @@ namespace console {
             std::cout << "\033[2K";
             return;
         }
+        #ifdef __WIN32
         ConsoleInfo info = getConsoleInfo();
         DWORD cellsToClear = info.csbi.dwSize.X;
         DWORD charsWritten;
@@ -147,6 +151,7 @@ namespace console {
         FillConsoleOutputCharacter(info.hConsole, ' ', cellsToClear, startCoord, &charsWritten);
         FillConsoleOutputAttribute(info.hConsole, info.csbi.wAttributes, cellsToClear, startCoord, &charsWritten);
         SetConsoleCursorPosition(info.hConsole, info.csbi.dwCursorPosition);
+        #endif
     }
 }
 
