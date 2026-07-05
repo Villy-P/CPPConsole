@@ -48,6 +48,9 @@ clean:
 rebuild: clean setup run-test
 production: clean setup-prod build-prod
 
+build-docs:
+	cmake --build $(BUILD_DIR) --target doxygen
+
 help:
 	@echo "Available targets:"
 	@echo "  setup       - Configure Debug build"
@@ -57,3 +60,4 @@ help:
 	@echo "  run-test    - Run Debug test executable"
 	@echo "  clean       - Remove build directory"
 	@echo "  rebuild     - Clean, setup Debug, build and run"
+	@echo "  build-docs  - Build documentation"
