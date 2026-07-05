@@ -41,7 +41,10 @@ namespace console {
     /**
      * @brief Colors the text color to a custom RGB color
      * 
-     * @param color The color to set the text to
+     * @param str The string to colorize
+     * @param r Red value (0-255)
+     * @param g Green value (0-255)
+     * @param b Blue value (0-255)
      * @param foreground Whether to set the foreground or background color (default is foreground)
      */
     std::string colorize(const std::string& str, unsigned char r, unsigned char g, unsigned char b, bool foreground = true) {
