@@ -37,3 +37,5 @@ docs/html/
 docs/latex/
 docs/theme/
 docs/xml/
+.vercel
+.env*
