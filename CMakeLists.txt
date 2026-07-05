@@ -40,6 +40,7 @@ if (DOXYGEN_FOUND)
     file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs)
     file(COPY ${AWESOME_CSS_DIR}/doxygen-awesome.css
         DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/docs/theme)
+    file(COPY assets DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/docs/html)
 
     add_custom_target(doxygen
         COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile

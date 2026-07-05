@@ -33,4 +33,7 @@
 
 build/
 .vscode/
-docs/
+docs/html/
+docs/latex/
+docs/theme/
+docs/xml/
