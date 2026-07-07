@@ -2,18 +2,19 @@
 #include <map>
 #include <vector>
 
+#include "color.hpp"
 #include "console.hpp"
-#include "printall.hpp"
 #include "cursor.hpp"
+#include "dimensions.hpp"
 #include "erase.hpp"
 #include "graphics.hpp"
-#include "color.hpp"
-#include "dimensions.hpp"
+#include "printall.hpp"
 
 int main() {
     console::Dimensions dim = console::getDimensions();
     console::println("Terminal Dimensions: ");
-    console::printAll("Width:", std::to_string(dim.width), "| Height:", std::to_string(dim.height), "\n");
+    console::printAll("Width:", std::to_string(dim.width),
+                      "| Height:", std::to_string(dim.height), "\n");
     console::println("Testing C++ Console. Press ENTER to begin.");
     std::cin.get();
 
@@ -23,13 +24,7 @@ int main() {
     console::println("Testing Printing Data Structures");
 
     std::vector<int> vec = {0, 1, 2, 4, 8, 16};
-    std::map<int, int> m = {
-        {0, 0},
-        {1, 1},
-        {2, 4},
-        {3, 9},
-        {4, 16}
-    };
+    std::map<int, int> m = {{0, 0}, {1, 1}, {2, 4}, {3, 9}, {4, 16}};
     int arr[] = {0, 1, 2, 3, 4};
 
     console::print("Vector: ");
@@ -62,7 +57,6 @@ int main() {
     console::moveCursorHome();
     console::moveCursorDown(6);
 
-
     console::print("Press ENTER to continue");
     std::cin.get();
     console::eraseEntireScreen();
@@ -78,7 +72,6 @@ int main() {
     console::print(console::strikethrough("Strikethrough "));
     console::println();
 
-
     console::print("Press ENTER to continue");
     std::cin.get();
     console::eraseEntireScreen();
@@ -86,26 +79,40 @@ int main() {
     console::println("Testing Colors");
     console::println("Basic Colors: ");
     for (int i = 30; i < 38; ++i)
-        console::print(console::colorize(std::to_string(i), static_cast<console::Graphics>(i)) + " ");
+        console::print(console::colorize(std::to_string(i),
+                                         static_cast<console::Graphics>(i)) +
+                       " ");
     for (int i = 40; i < 48; ++i)
-        console::print(console::colorize(std::to_string(i), static_cast<console::Graphics>(i)) + " ");
+        console::print(console::colorize(std::to_string(i),
+                                         static_cast<console::Graphics>(i)) +
+                       " ");
     for (int i = 90; i < 98; ++i)
-        console::print(console::colorize(std::to_string(i), static_cast<console::Graphics>(i)) + " ");
+        console::print(console::colorize(std::to_string(i),
+                                         static_cast<console::Graphics>(i)) +
+                       " ");
     for (int i = 100; i < 108; ++i)
-        console::print(console::colorize(std::to_string(i), static_cast<console::Graphics>(i)) + " ");
+        console::print(console::colorize(std::to_string(i),
+                                         static_cast<console::Graphics>(i)) +
+                       " ");
     console::println();
 
     console::println("256 Colors: ");
     for (int i = 0; i < 256; ++i) {
-        if (i % 16 == 0)
-            console::println();
-        console::print(console::colorize(std::string(3 - std::to_string(i).length(), ' ') + std::to_string(i), i) + " ");
+        if (i % 16 == 0) console::println();
+        console::print(
+            console::colorize(std::string(3 - std::to_string(i).length(), ' ') +
+                                  std::to_string(i),
+                              i) +
+            " ");
     }
 
     for (int i = 0; i < 256; ++i) {
-        if (i % (dim.width / 4) == 0)
-            console::println();
-        console::print(console::colorize(std::string(3 - std::to_string(i).length(), ' ') + std::to_string(i), i, false) + " ");
+        if (i % (dim.width / 4) == 0) console::println();
+        console::print(
+            console::colorize(std::string(3 - std::to_string(i).length(), ' ') +
+                                  std::to_string(i),
+                              i, false) +
+            " ");
     }
     console::println();
     console::print("Testing Finished");

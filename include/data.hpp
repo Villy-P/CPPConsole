@@ -7,13 +7,13 @@
  * @brief Namespace Containing all console commands
  */
 namespace console {
-     /**
-     * @brief A position on the console (row and column)
-     */
-    typedef struct {
-        int X;
-        int Y;
-    } ConsoleCoord;
-}
+/**
+ * @brief A position on the console (row and column)
+ */
+typedef struct {
+    int X;
+    int Y;
+} ConsoleCoord;
+}  // namespace console
 
 #endif

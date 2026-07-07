@@ -49,3 +49,7 @@ if (DOXYGEN_FOUND)
         VERBATIM
     )
 endif()
+
+# >>> graft: clang-format >>>
+include(cmake/ClangFormat.cmake)
+# <<< graft: clang-format <<<

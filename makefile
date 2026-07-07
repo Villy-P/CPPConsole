@@ -61,3 +61,17 @@ help:
 	@echo "  clean       - Remove build directory"
 	@echo "  rebuild     - Clean, setup Debug, build and run"
 	@echo "  build-docs  - Build documentation"
+
+# >>> graft: clang-format >>>
+.PHONY: graft-precommit-install
+graft-precommit-install:
+	pre-commit install
+
+setup: graft-precommit-install
+
+clang-format:
+	cmake --build $(BUILD_DIR) --target clang-format
+
+clang-format-check:
+	cmake --build $(BUILD_DIR) --target clang-format-check
+# <<< graft: clang-format <<<

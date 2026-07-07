@@ -7,44 +7,45 @@
 #include <string>
 #include <utility>
 namespace console {
-    /**
-     * @brief Template for a iterable data type. Matches things like vector, deque, map, etc. 
-     * 
-     * @tparam T Type of the data type
-     */
-    template<typename T>
-    struct iterable {
-        template<class V> static long check(...); 
-        template<class V> static char  check(
-            int, typename V::const_iterator = T().end()); 
-            
-        enum { 
-            is = sizeof(check<T>(0)) == sizeof(char) 
-        }; 
-    };
+/**
+ * @brief Template for a iterable data type. Matches things like vector, deque,
+ * map, etc.
+ *
+ * @tparam T Type of the data type
+ */
+template <typename T>
+struct iterable {
+    template <class V>
+    static long check(...);
+    template <class V>
+    static char check(int, typename V::const_iterator = T().end());
 
-    /**
-     * @brief Template for a map-like data type. Matches things like map and unordered_map
-     * 
-     * @tparam T Type of the data type
-     */
-    template <typename T>
-    struct is_map {
-        template <typename V>
-        static auto check(int) -> decltype(
-            std::declval<V&>()[std::declval<const typename V::key_type&>()],
-            std::true_type{});
+    enum { is = sizeof(check<T>(0)) == sizeof(char) };
+};
 
-        template <typename V>
-        static std::false_type check(...);
+/**
+ * @brief Template for a map-like data type. Matches things like map and
+ * unordered_map
+ *
+ * @tparam T Type of the data type
+ */
+template <typename T>
+struct is_map {
+    template <typename V>
+    static auto check(int)
+        -> decltype(std::declval<
+                        V&>()[std::declval<const typename V::key_type&>()],
+                    std::true_type{});
 
-        enum { 
-            is = decltype(check<T>(0))::value
-        };
-    };
+    template <typename V>
+    static std::false_type check(...);
 
-    template<typename T>
-    struct is_not_string : std::integral_constant<bool, !std::is_same_v<T, std::string>> {};
-}
+    enum { is = decltype(check<T>(0))::value };
+};
+
+template <typename T>
+struct is_not_string
+    : std::integral_constant<bool, !std::is_same_v<T, std::string>> {};
+}  // namespace console
 
 #endif
