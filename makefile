@@ -63,11 +63,11 @@ help:
 	@echo "  build-docs  - Build documentation"
 
 # >>> graft: clang-format >>>
-.PHONY: graft-precommit-install
+.PHONY: graft-precommit-install setup-dev clang-format clang-format-check
 graft-precommit-install:
 	pre-commit install
 
-setup: graft-precommit-install
+setup-dev: setup graft-precommit-install
 
 clang-format:
 	cmake --build $(BUILD_DIR) --target clang-format
